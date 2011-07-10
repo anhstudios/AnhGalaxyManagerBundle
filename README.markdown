@@ -13,14 +13,15 @@ Add the following to the deps file (for projects based on the Symfony2 Standard 
 Then run the vendors script
 
     ./bin/vendors install
+    [windows]  php bin/vendors install
 
 Add the Anh namespace to your autoloader
 
     // app/autoload.php
     $loader->registerNamespaces(array(
-        'Anh' => __DIR__.'/../vendor/bundles',
-        // your other namespaces
-    );
+    'Anh' => __DIR__.'/../vendor/bundles',
+	'FOS' => __DIR__.'/../vendor/bundles',
+    ));
     
 Finally, add the GalaxyManagerBundle to your application kernel
 
