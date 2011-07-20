@@ -18,7 +18,7 @@ class Account extends BaseUser
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      * @ORM\generatedValue(strategy="AUTO")
      */
     protected $id;
