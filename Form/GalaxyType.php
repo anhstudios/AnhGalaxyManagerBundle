@@ -15,7 +15,6 @@ class GalaxyType extends AbstractType
             ->add('status')
             ->add('createdAt')
             ->add('updatedAt')
-            ->add('primaryService')
         ;
     }
 
