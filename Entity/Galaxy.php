@@ -64,6 +64,11 @@ class Galaxy
         $this->services = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /**
      * Get id
      *
@@ -199,9 +204,9 @@ class Galaxy
      *
      * @param Anh\GalaxyManagerBundle\Entity\Service $service
      */
-    public function addService(\Anh\ServerDirectoryBundle\Entity\Service $service)
+    public function addService(\Anh\GalaxyManagerBundle\Entity\Service $service)
     {
-        $this->processes[] = $processes;
+        $this->services[] = $service;
     }
 
     /**
