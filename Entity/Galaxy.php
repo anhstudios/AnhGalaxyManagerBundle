@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="cluster")
+ * @ORM\Table(name="galaxy")
  */
-class Cluster
+class Galaxy
 {
     /**
      * @ORM\Id
@@ -49,19 +49,24 @@ class Cluster
     protected $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Process")
+     * @ORM\ManyToOne(targetEntity="Service")
      * @ORM\JoinColumn(name="primary_id", referencedColumnName="id")
      */
-    protected $primaryProcess;
+    protected $primaryService;
 
     /**
-     * @ORM\OneToMany(targetEntity="Process", mappedBy="cluster")
+     * @ORM\OneToMany(targetEntity="Service", mappedBy="galaxy")
      */
-    protected $processes;
+    protected $services;
 
     public function __construct()
     {
-        $this->processes = new ArrayCollection();
+        $this->services = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     /**
@@ -175,42 +180,42 @@ class Cluster
     }
 
     /**
-     * Set primaryProcess
+     * Set primaryService
      *
-     * @param Anh\ServerDirectoryBundle\Entity\Process $primaryProcess
+     * @param Anh\GalaxyManagerBundle\Entity\Service $primaryService
      */
-    public function setPrimaryProcess(\Anh\ServerDirectoryBundle\Entity\Process $primaryProcess)
+    public function setPrimaryService(\Anh\GalaxyManagerBundle\Entity\Service $primaryService)
     {
-        $this->primaryProcess = $primaryProcess;
+        $this->primaryService = $primaryService;
     }
 
     /**
-     * Get primaryProcess
+     * Get primaryService
      *
-     * @return Anh\ServerDirectoryBundle\Entity\Process $primaryProcess
+     * @return Anh\GalaxyManagerBundle\Entity\Service $primaryService
      */
-    public function getPrimaryProcess()
+    public function getPrimaryService()
     {
-        return $this->primaryProcess;
+        return $this->primaryService;
     }
 
     /**
-     * Add processes
+     * Add service
      *
-     * @param Anh\ServerDirectoryBundle\Entity\Process $processes
+     * @param Anh\GalaxyManagerBundle\Entity\Service $service
      */
-    public function addProcesses(\Anh\ServerDirectoryBundle\Entity\Process $processes)
+    public function addService(\Anh\GalaxyManagerBundle\Entity\Service $service)
     {
-        $this->processes[] = $processes;
+        $this->services[] = $service;
     }
 
     /**
-     * Get processes
+     * Get services
      *
-     * @return Doctrine\Common\Collections\Collection $processes
+     * @return Doctrine\Common\Collections\Collection $services
      */
-    public function getProcesses()
+    public function getServices()
     {
-        return $this->processes;
+        return $this->services;
     }
 }

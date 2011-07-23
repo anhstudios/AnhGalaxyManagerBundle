@@ -9,6 +9,10 @@ Add the following to the deps file (for projects based on the Symfony2 Standard 
     [GalaxyManagerBundle]
         git=git://github.com/anhstudios/GalaxyManagerBundle.git
         target=/bundles/Anh/GalaxyManagerBundle
+
+    [FOSUserBundle]
+        git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
+        target=bundles/FOS/UserBundle
         
 Then run the vendors script
 
@@ -33,6 +37,7 @@ Finally, add the GalaxyManagerBundle to your application kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             // ...
             new FOS\UserBundle\FOSUserBundle(),
+            new Anh\GalaxyManagerBundle\AnhGalaxyManagerBundle(),
             // ...
         );
     }

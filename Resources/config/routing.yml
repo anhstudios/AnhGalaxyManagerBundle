@@ -1,0 +1,7 @@
+galaxy_manager_galaxy:
+    resource: "@AnhGalaxyManagerBundle/Controller/GalaxyController.php"
+    type: annotation
+
+galaxy_manager_service:
+    resource: "@AnhGalaxyManagerBundle/Controller/ServiceController.php"
+    type: annotation

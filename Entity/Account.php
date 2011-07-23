@@ -12,23 +12,16 @@ use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="galaxy_user")
- *
- * NOTICE: User is a reserved keyword and cannot be used as a table name.
+ * @ORM\Table(name="account")
  */
-class User extends BaseUser
+class Account extends BaseUser
 {
     /**
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      * @ORM\generatedValue(strategy="AUTO")
      */
     protected $id;
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Get id

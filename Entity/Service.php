@@ -11,9 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="process")
+ * @ORM\Table(name="service")
  */
-class Process
+class Service
 {
     /**
      * @ORM\Id
@@ -33,7 +33,7 @@ class Process
     protected $type;
 
     /**
-     * @orm\Column(type="bigint")
+     * @ORM\Column(type="bigint")
      */
     protected $address;
 
@@ -78,10 +78,10 @@ class Process
     protected $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cluster", inversedBy="processes")
-     * @ORM\JoinColumn(name="cluster_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Galaxy", inversedBy="services")
+     * @ORM\JoinColumn(name="galaxy_id", referencedColumnName="id")
      */
-    protected $cluster;
+    protected $galaxy;
 
     /**
      * Get id
@@ -314,22 +314,22 @@ class Process
     }
 
     /**
-     * Set cluster
+     * Set galaxy
      *
-     * @param Anh\ServerDirectoryBundle\Entity\Cluster $cluster
+     * @param Anh\GalaxyManagerBundle\Entity\Galaxy $galaxy
      */
-    public function setCluster(\Anh\ServerDirectoryBundle\Entity\Cluster $cluster)
+    public function setGalaxy(\Anh\GalaxyManagerBundle\Entity\Galaxy $galaxy)
     {
-        $this->cluster = $cluster;
+        $this->galaxy = $galaxy;
     }
 
     /**
-     * Get cluster
+     * Get galaxy
      *
-     * @return Anh\ServerDirectoryBundle\Entity\Cluster $cluster
+     * @return Anh\GalaxyManagerBundle\Entity\Galaxy $galaxy
      */
-    public function getCluster()
+    public function getGalaxy()
     {
-        return $this->cluster;
+        return $this->galaxy;
     }
 }
