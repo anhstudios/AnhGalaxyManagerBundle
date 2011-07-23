@@ -33,11 +33,6 @@ class Service
     protected $type;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $isPrimary;
-
-    /**
      * @ORM\Column(type="bigint")
      */
     protected $address;
@@ -336,25 +331,5 @@ class Service
     public function getGalaxy()
     {
         return $this->galaxy;
-    }
-
-    /**
-     * Set isPrimary
-     *
-     * @param boolean $isPrimary
-     */
-    public function setIsPrimary($isPrimary)
-    {
-        $this->isPrimary = $isPrimary;
-    }
-
-    /**
-     * Get isPrimary
-     *
-     * @return boolean 
-     */
-    public function getIsPrimary()
-    {
-        return $this->isPrimary;
     }
 }

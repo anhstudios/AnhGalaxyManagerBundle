@@ -49,6 +49,12 @@ class Galaxy
     protected $updatedAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Service")
+     * @ORM\JoinColumn(name="primary_id", referencedColumnName="id")
+     */
+    protected $primaryService;
+
+    /**
      * @ORM\OneToMany(targetEntity="Service", mappedBy="galaxy")
      */
     protected $services;
@@ -171,6 +177,26 @@ class Galaxy
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set primaryService
+     *
+     * @param Anh\GalaxyManagerBundle\Entity\Service $primaryService
+     */
+    public function setPrimaryService(\Anh\GalaxyManagerBundle\Entity\Service $primaryService)
+    {
+        $this->primaryService = $primaryService;
+    }
+
+    /**
+     * Get primaryService
+     *
+     * @return Anh\GalaxyManagerBundle\Entity\Service $primaryService
+     */
+    public function getPrimaryService()
+    {
+        return $this->primaryService;
     }
 
     /**
