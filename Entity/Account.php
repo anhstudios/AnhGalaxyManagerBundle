@@ -40,6 +40,7 @@ class Account extends BaseUser
      
     public function __construct()
     {
+        parent::__construct();
         $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
