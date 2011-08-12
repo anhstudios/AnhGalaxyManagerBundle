@@ -1,3 +1,6 @@
+{% extends 'AnhGalaxyManagerBundle::layout.html.twig' %}
+
+{% block content %}
 <h1>Galaxy creation</h1>
 
 <form action="{{ path('galaxy_create') }}" method="post" {{ form_enctype(form) }}>
@@ -14,3 +17,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}
