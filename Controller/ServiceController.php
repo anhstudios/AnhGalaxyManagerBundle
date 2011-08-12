@@ -2,6 +2,8 @@
 
 namespace Anh\GalaxyManagerBundle\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -16,6 +18,13 @@ use Anh\GalaxyManagerBundle\Form\ServiceType;
  */
 class ServiceController extends Controller
 {
+    protected $securityContext;
+
+    public function __construct(SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
+    }
+    
     /**
      * Lists all Service entities.
      *
@@ -24,6 +33,10 @@ class ServiceController extends Controller
      */
     public function indexAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('AnhGalaxyManagerBundle:Service')->findAll();
@@ -39,6 +52,10 @@ class ServiceController extends Controller
      */
     public function showAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Service')->find($id);
@@ -63,6 +80,10 @@ class ServiceController extends Controller
      */
     public function newAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new Service();
         $form   = $this->createForm(new ServiceType(), $entity);
 
@@ -81,6 +102,10 @@ class ServiceController extends Controller
      */
     public function createAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $entity  = new Service();
         $request = $this->getRequest();
         $form    = $this->createForm(new ServiceType(), $entity);
@@ -109,6 +134,10 @@ class ServiceController extends Controller
      */
     public function editAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Service')->find($id);
@@ -136,6 +165,10 @@ class ServiceController extends Controller
      */
     public function updateAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Service')->find($id);
@@ -173,6 +206,10 @@ class ServiceController extends Controller
      */
     public function deleteAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
