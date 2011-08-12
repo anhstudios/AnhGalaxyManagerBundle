@@ -2,6 +2,8 @@
 
 namespace Anh\GalaxyManagerBundle\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -63,6 +65,10 @@ class GalaxyController extends Controller
      */
     public function newAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new Galaxy();
         $form   = $this->createForm(new GalaxyType(), $entity);
 
@@ -81,6 +87,10 @@ class GalaxyController extends Controller
      */
     public function createAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $entity  = new Galaxy();
         $request = $this->getRequest();
         $form    = $this->createForm(new GalaxyType(), $entity);
@@ -109,6 +119,10 @@ class GalaxyController extends Controller
      */
     public function editAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Galaxy')->find($id);
@@ -136,6 +150,10 @@ class GalaxyController extends Controller
      */
     public function updateAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Galaxy')->find($id);
@@ -173,6 +191,10 @@ class GalaxyController extends Controller
      */
     public function deleteAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 

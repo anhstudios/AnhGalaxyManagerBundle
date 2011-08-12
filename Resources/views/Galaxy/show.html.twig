@@ -1,22 +1,28 @@
 {% extends 'AnhGalaxyManagerBundle::layout.html.twig' %}
 
 {% block content %}
-<h1>Galaxy</h1>
+<h2>Galaxy</h2>
 
 <table class="record_properties">
     <tbody>
+    {% if is_granted('ROLE_ADMIN') %}
         <tr>
             <th>Id</th>                <td>{{ entity.id }}</td>        </tr>
+    {% endif %}
+    
         <tr>
             <th>Name</th>                <td>{{ entity.name }}</td>        </tr>
         <tr>
             <th>Version</th>                <td>{{ entity.version }}</td>        </tr>
         <tr>
             <th>Status</th>                <td>{{ entity.status }}</td>        </tr>
+
+    {% if is_granted('ROLE_ADMIN') %}
         <tr>
             <th>Createdat</th>                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>        </tr>
         <tr>
             <th>Updatedat</th>                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>        </tr>
+    {% endif %}
     </tbody>
 </table>
 
@@ -26,6 +32,8 @@
             Back to the list
         </a>
     </li>
+
+    {% if is_granted('ROLE_ADMIN') %}
     <li>
         <a href="{{ path('galaxy_edit', { 'id': entity.id }) }}">
             Edit
@@ -37,5 +45,6 @@
             <button type="submit">Delete</button>
         </form>
     </li>
+    {% endif %}
 </ul>
 {% endblock %}
