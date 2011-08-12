@@ -33,6 +33,10 @@ class ServiceController extends Controller
      */
     public function indexAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('AnhGalaxyManagerBundle:Service')->findAll();
@@ -48,6 +52,10 @@ class ServiceController extends Controller
      */
     public function showAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Service')->find($id);
