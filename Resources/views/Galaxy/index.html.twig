@@ -1,24 +1,40 @@
-<h1>Galaxy list</h1>
+{% extends 'AnhGalaxyManagerBundle::layout.html.twig' %}
+
+{% block content %}
+<h2>Galaxies</h2>
 
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Name</th>
             <th>Version</th>
             <th>Status</th>
+
+            {% if is_granted('ROLE_ADMIN') %}
             <th>Createdat</th>
             <th>Updatedat</th>
             <th>Actions</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('galaxy_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.name }}</td>
+            <td><a href="{{ path('galaxy_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
             <td>{{ entity.version }}</td>
-            <td>{{ entity.status }}</td>
+            <td>
+                {% if entity.status == 0 %}
+                Offline
+                {% elseif entity.status == 1 %}
+                Loading
+                {% elseif entity.status == 2 %}
+                Online
+                {% else %}
+                Unknown
+                {% endif %}
+            </td>
+
+            {% if is_granted('ROLE_ADMIN') %}
             <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
             <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
             <td>
@@ -31,15 +47,9 @@
                     </li>
                 </ul>
             </td>
+            {% endif %}
         </tr>
     {% endfor %}
     </tbody>
 </table>
-
-<ul>
-    <li>
-        <a href="{{ path('galaxy_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+{% endblock %}
