@@ -2,6 +2,8 @@
 
 namespace Anh\GalaxyManagerBundle\Controller;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -59,11 +61,14 @@ class GalaxyController extends Controller
      * Displays a form to create a new Galaxy entity.
      *
      * @Route("/new", name="galaxy_new")
-     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function newAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $entity = new Galaxy();
         $form   = $this->createForm(new GalaxyType(), $entity);
 
@@ -78,11 +83,14 @@ class GalaxyController extends Controller
      *
      * @Route("/create", name="galaxy_create")
      * @Method("post")
-     * @Secure(roles="ROLE_ADMIN")
      * @Template("AnhGalaxyManagerBundle:Galaxy:new.html.twig")
      */
     public function createAction()
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $entity  = new Galaxy();
         $request = $this->getRequest();
         $form    = $this->createForm(new GalaxyType(), $entity);
@@ -107,11 +115,14 @@ class GalaxyController extends Controller
      * Displays a form to edit an existing Galaxy entity.
      *
      * @Route("/{id}/edit", name="galaxy_edit")
-     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function editAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Galaxy')->find($id);
@@ -135,11 +146,14 @@ class GalaxyController extends Controller
      *
      * @Route("/{id}/update", name="galaxy_update")
      * @Method("post")
-     * @Secure(roles="ROLE_ADMIN")
      * @Template("AnhGalaxyManagerBundle:Galaxy:edit.html.twig")
      */
     public function updateAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('AnhGalaxyManagerBundle:Galaxy')->find($id);
@@ -173,11 +187,14 @@ class GalaxyController extends Controller
      * Deletes a Galaxy entity.
      *
      * @Route("/{id}/delete", name="galaxy_delete")
-     * @Secure(roles="ROLE_ADMIN")
      * @Method("post")
      */
     public function deleteAction($id)
     {
+        if (false === $this->securityContext->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+        
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
