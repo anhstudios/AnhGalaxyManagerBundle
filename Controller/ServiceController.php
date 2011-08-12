@@ -59,6 +59,7 @@ class ServiceController extends Controller
      * Displays a form to create a new Service entity.
      *
      * @Route("/new", name="service_new")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function newAction()
@@ -77,6 +78,7 @@ class ServiceController extends Controller
      *
      * @Route("/create", name="service_create")
      * @Method("post")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template("AnhGalaxyManagerBundle:Service:new.html.twig")
      */
     public function createAction()
@@ -105,6 +107,7 @@ class ServiceController extends Controller
      * Displays a form to edit an existing Service entity.
      *
      * @Route("/{id}/edit", name="service_edit")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function editAction($id)
@@ -132,6 +135,7 @@ class ServiceController extends Controller
      *
      * @Route("/{id}/update", name="service_update")
      * @Method("post")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template("AnhGalaxyManagerBundle:Service:edit.html.twig")
      */
     public function updateAction($id)
@@ -169,6 +173,7 @@ class ServiceController extends Controller
      * Deletes a Service entity.
      *
      * @Route("/{id}/delete", name="service_delete")
+     * @Secure(roles="ROLE_ADMIN")
      * @Method("post")
      */
     public function deleteAction($id)

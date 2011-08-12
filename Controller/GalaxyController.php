@@ -59,6 +59,7 @@ class GalaxyController extends Controller
      * Displays a form to create a new Galaxy entity.
      *
      * @Route("/new", name="galaxy_new")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function newAction()
@@ -77,6 +78,7 @@ class GalaxyController extends Controller
      *
      * @Route("/create", name="galaxy_create")
      * @Method("post")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template("AnhGalaxyManagerBundle:Galaxy:new.html.twig")
      */
     public function createAction()
@@ -105,6 +107,7 @@ class GalaxyController extends Controller
      * Displays a form to edit an existing Galaxy entity.
      *
      * @Route("/{id}/edit", name="galaxy_edit")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function editAction($id)
@@ -132,6 +135,7 @@ class GalaxyController extends Controller
      *
      * @Route("/{id}/update", name="galaxy_update")
      * @Method("post")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template("AnhGalaxyManagerBundle:Galaxy:edit.html.twig")
      */
     public function updateAction($id)
@@ -169,6 +173,7 @@ class GalaxyController extends Controller
      * Deletes a Galaxy entity.
      *
      * @Route("/{id}/delete", name="galaxy_delete")
+     * @Secure(roles="ROLE_ADMIN")
      * @Method("post")
      */
     public function deleteAction($id)

@@ -26,6 +26,8 @@
             Back to the list
         </a>
     </li>
+
+    {% if is_granted('ROLE_ADMIN') %}
     <li>
         <a href="{{ path('galaxy_edit', { 'id': entity.id }) }}">
             Edit
@@ -37,5 +39,6 @@
             <button type="submit">Delete</button>
         </form>
     </li>
+    {% endif %}
 </ul>
 {% endblock %}
